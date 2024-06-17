@@ -1,23 +1,25 @@
 from kivy.app import App
+from kivy.core.window import Window
 from kivy.lang import Builder
+from kivy.properties import StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.boxlayout import BoxLayout
 Builder.load_string('''
 <MyCard>:
-    data: 'Data'
+
     title: 'Title'
-    description: 'Information'
+
     orientation: "vertical"
-    padding: 10, 10
+    padding: self.width*0.1, self.height*0.1
     spacing: 10
     canvas:
         Color:
-            rgb: 0.5, 0.5, 0.5, 1
+            rgb: 0.5, 0.7, 0.7, 0.5
         RoundedRectangle:
             size: self.size
             pos: self.pos
         Color:
-            rgb: 1, 1, 1, 1
+            rgb: 1, 1, 1, 0.5
         BoxShadow:
             size: self.size
             pos: self.pos
@@ -47,11 +49,15 @@ Builder.load_string('''
 ''')
 
 class MyCard(ButtonBehavior, BoxLayout):
-    pass
-
+    title = StringProperty()
+    data = StringProperty("23-12-2024")
+    description =StringProperty("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
 class RecycleApp(App):
     def build(self):
-        return MyCard()
+        Window.clearcolor = (1, 1, 1, 1)
+        a = BoxLayout(padding="20dp")
+        a.add_widget(MyCard())
+        return a
 
 
 if __name__ == '__main__':

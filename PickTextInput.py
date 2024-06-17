@@ -1,7 +1,9 @@
 from kivy.app import App
+from kivy.core.window import Window
 from kivy.graphics import Color, BoxShadow, Line, RoundedRectangle
 from kivy.lang import Builder
 from kivy.properties import ColorProperty
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
 
@@ -41,7 +43,10 @@ class PickTextInput(TextInput):
 
 class MApp(App):
     def build(self):
-        return PickTextInput()
+        Window.clearcolor = (1, 1, 1, 1)
+        a = BoxLayout(padding="20dp")
+        a.add_widget(PickTextInput())
+        return a
 
 
 if __name__ == '__main__':

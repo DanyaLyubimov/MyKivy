@@ -3,9 +3,11 @@ from functools import partial
 from kivy.animation import Animation
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.core.window import Window
 
 from kivy.lang import Builder
 from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.metrics import dp
 from kivy.uix.label import Label
@@ -19,6 +21,7 @@ from theming import THEMS_BORDER, THEMS_SHADOW
 Builder.load_string('''
 <Label>:
     color: (.9,.9,.9,1)
+    
 <MyButton>:
 
     background_normal:""
@@ -143,7 +146,10 @@ class MyButton(Button):
 
 class TApp(App):
     def build(self):
-        return MyButton(text="Test", type_button='BORDER', theme='RARE')
+        Window.clearcolor = (1, 1, 1, 1)
+        a =BoxLayout(padding="20dp")
+        a.add_widget(MyButton(text="Test", type_button='SHADOW', theme='ELEGANT'))
+        return a
 
 
 if __name__ == "__main__":
